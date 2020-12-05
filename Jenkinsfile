@@ -41,7 +41,7 @@ pipeline {
            catch (err) {
                 echo err.getMessage()
             }
-         }
+        
           }
         }  
       }
