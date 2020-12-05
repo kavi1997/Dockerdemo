@@ -6,19 +6,19 @@ pipeline {
     stages{
       stage("Docker Build"){
         steps{
-           pipelineStage = env.STAGE_NAME
+          sh "pipelineStage = env.STAGE_NAME"
           sh "docker build -t dockernginx ."   
         }  
       }
       stage("Run Docker image"){
         steps{
-           pipelineStage = env.STAGE_NAME
+          sh "pipelineStage = env.STAGE_NAME"
           sh "docker run --name nginx -itd -p 9090:80 dockernginx:latest"   
         }  
       }  
       stage("Pushing to docker hub"){
         steps{
-          pipelineStage = env.STAGE_NAME
+          sh "pipelineStage = env.STAGE_NAME"
           withCredentials([usernamePassword(credentialsId: 'dockerhub_credential', passwordVariable: 'pass', usernameVariable: 'userId')]) {
             sh 'docker login -u ${userId} -p ${pass}'
             sh 'docker commit nginx ${userId}/docker:latest'
