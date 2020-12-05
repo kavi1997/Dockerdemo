@@ -8,7 +8,7 @@ pipeline {
                     last_started = env.STAGE_NAME
            sh "docker build -t dockernginx ."  
              }
-             catch (err) {
+             catch (Exception err) {
                 echo err.getMessage()
             }
         } 
@@ -21,8 +21,8 @@ pipeline {
                     last_started = env.STAGE_NAME
           sh "docker run --name nginx -itd -p 9090:80 dockernginx:latest" 
             }
-              catch (err) {
-                //echo err.getMessage()
+              catch (Exception err) {
+                echo err.getMessage()
                  currentBuild.result = "FAILED"
             }
           }
@@ -39,7 +39,7 @@ pipeline {
             sh 'docker push ${userId}/docker:latest'
          }
             }
-           catch (err) {
+           catch (Exception err) {
                 echo err.getMessage()
             }
         
