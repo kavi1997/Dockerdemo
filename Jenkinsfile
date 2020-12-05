@@ -1,7 +1,7 @@
 pipeline {
-  agent any 
+  agent any
+   try{
     stages{
-      try{
       stage("Docker Build"){
         steps{
           sh "docker build -t dockernginx ."   
