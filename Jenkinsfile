@@ -30,7 +30,7 @@ pipeline {
           }
         }  
       }  
-   /*   stage("Pushing to docker hub"){
+      stage("Pushing to docker hub"){
         steps{
           script {
             try{
@@ -48,7 +48,7 @@ pipeline {
         
           }
         }  
-      }*/
+      }
      }  
   
      
