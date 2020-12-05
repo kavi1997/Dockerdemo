@@ -1,6 +1,5 @@
 pipeline {
   agent any
-   try{
     stages{
       stage("Docker Build"){
         steps{
@@ -22,12 +21,20 @@ pipeline {
         }  
       }
      }  
-   }
-      catch (Exception err)
-           {
-                echo "Error caught${err}"
-                failedStage = "${pipelineStage}"
-                echo "Build failed at ${pipelineStage}"
-           }
+  
+      post { 
+        always { 
+           script{
+        if (currentBuild.currentResult == "ABORTED" || currentBuild.currentResult == "FAILURE")
+        {
+            echo "The build is aborted or failed at ${pipelineStage} "
+        }
+             if (currentBuild.currentResult == "SUCCESS")
+        {
+            echo "The build is success "
+        }
+    }
+    }
+    }
    
 }
