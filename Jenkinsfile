@@ -23,6 +23,7 @@ pipeline {
             }
               catch (err) {
                 echo err.getMessage()
+                 currentBuild.result = "FAILED"
             }
           }
         }  
