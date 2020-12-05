@@ -32,18 +32,14 @@ pipeline {
      }  
   
       post { 
-        always { 
-           script{
-        if (currentBuild.currentResult == "ABORTED" || currentBuild.currentResult == "FAILURE")
-        {
-          echo "The build is aborted or failed at $last_started "
-        }
-             if (currentBuild.currentResult == "SUCCESS")
-        {
-            echo "The build is success "
-        }
+         post {
+    success {
+        echo 'Successfully completed '    
     }
-    }
-    }
+    failure {
+      
+       echo "Build failed at $last_started"
+    }  
+  }
    
 }
