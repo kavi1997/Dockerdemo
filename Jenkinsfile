@@ -37,6 +37,7 @@ pipeline {
             sh 'docker commit nginx ${userId}/docker:latest'
             sh 'docker push ${userId}/docker:latest'
          }
+            }
            catch (err) {
                 echo err.getMessage()
             }
