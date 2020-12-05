@@ -1,6 +1,6 @@
 pipeline {
     environment {
-     pipelineStage = env.STAGE_NAME
+     def pipelineStage = null
    }
   agent any
     stages{
