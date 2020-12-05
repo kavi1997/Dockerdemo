@@ -1,4 +1,7 @@
 pipeline {
+    environment {
+     pipelineStage = env.STAGE_NAME
+   }
   agent any
     stages{
       stage("Docker Build"){
