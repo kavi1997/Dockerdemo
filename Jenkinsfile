@@ -22,11 +22,12 @@ pipeline {
         }  
       }
      }  
+   }
       catch (Exception err)
            {
                 echo "Error caught${err}"
                 failedStage = "${pipelineStage}"
                 echo "Build failed at ${pipelineStage}"
            }
-   }
+   
 }
