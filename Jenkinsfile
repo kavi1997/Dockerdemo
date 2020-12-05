@@ -22,7 +22,7 @@ pipeline {
           sh "docker run --name nginx -itd -p 9090:80 dockernginx:latest" 
             }
               catch (err) {
-                echo err.getMessage()
+                //echo err.getMessage()
                  currentBuild.result = "FAILED"
             }
           }
