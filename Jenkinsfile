@@ -1,6 +1,7 @@
 pipeline {
   agent any 
     stages{
+      try{
       stage("Docker Build"){
         steps{
           sh "docker build -t dockernginx ."   
@@ -15,10 +16,17 @@ pipeline {
         steps{
           withCredentials([usernamePassword(credentialsId: 'dockerhub_credential', passwordVariable: 'pass', usernameVariable: 'userId')]) {
             sh 'docker login -u ${userId} -p ${pass}'
-            sh "docker commit nginx kavi1997/docker:latest"
-            sh "docker push kavi1997/docker:latest"   
+            sh 'docker commit nginx ${userId}/docker:latest'
+            sh 'docker push ${userId}/docker:latest'   
           }
         }  
       }
+     }  
+      catch (Exception err)
+           {
+                echo "Error caught${err}"
+                failedStage = "${pipelineStage}"
+                echo "Build failed at ${pipelineStage}"
+           }
    }
 }
