@@ -23,6 +23,7 @@ pipeline {
           sh "docker run --name nginx -itd -p 9090:80 dockernginx:latest" 
             }
               catch (Exception err) {
+                echo "Build failed at $last_started" 
                 echo err.getMessage()
                 currentBuild.result = 'FAILURE'
             }
@@ -51,14 +52,14 @@ pipeline {
      }  
   
      
-         post {
+        /* post {
     success {
         echo 'Successfully completed '    
     }
     failure {
       
-       echo "Build failed at $last_started due to $err"
+       echo "Build failed at $last_started due to" echo err.getMessage()"
     }  
-  }
+  }*/
    
 }
