@@ -10,6 +10,7 @@ pipeline {
              }
              catch (Exception err) {
                 echo err.getMessage()
+               currentBuild.result = 'FAILURE'
             }
         } 
         }
@@ -23,7 +24,7 @@ pipeline {
             }
               catch (Exception err) {
                 echo err.getMessage()
-                // currentBuild.result = "FAILED"
+                currentBuild.result = 'FAILURE'
             }
           }
         }  
@@ -41,6 +42,7 @@ pipeline {
             }
            catch (Exception err) {
                 echo err.getMessage()
+                currentBuild.result = 'FAILURE'
             }
         
           }
